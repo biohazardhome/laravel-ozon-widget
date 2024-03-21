@@ -10,14 +10,15 @@ class Widget {
 	const
 		LIMIT = 5,
 		PRODUCTS = ['403482751', '403636472', '403505713', '403510966', '403617123'], // product ids
-		CACHE_TIME = 500;
+		CACHE_TIME = 500,
+		VISIBLE = 'VISIBLE'; // ALL, VISIBLE, TO_SUPPLY, IN_SALE, OVERPRICED
 
 	public
 		$api = null,
 		$products = [];
 
 	public function __construct() {
-		$this->api = new OzonApi;		
+		$this->api = app(OzonApi::class);		
 	}
 
 	public function init() {
@@ -32,7 +33,7 @@ class Widget {
 	public function apiProducts() {
 		$filter = new stdClass;
 		$filter->product_id = static::PRODUCTS;
-		$filter->visibility = 'VISIBLE';
+		$filter->visibility = static::VISIBLE;
 		$list = $this->api->productList($filter, static::LIMIT);
         
         $products = [];
