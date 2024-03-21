@@ -10,6 +10,8 @@
         left: 0;
         font-size: 14px;
         font-weight: bold;
+        background-color: rgb(0 48 120 / 11%);
+        padding: 0 3px;
     }
 
     .widget-seller-rating > span:first-child {
