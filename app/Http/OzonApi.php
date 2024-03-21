@@ -29,13 +29,18 @@ class OzonApi
         }
     }
 
-    public function post(string $url, array $query = []): array
+    public function post(string $url, array $query = []/*, string $resultType = 'object'*/): array
     {
         $response = Http::ozonApi()->post($url, $query);
         $this->response = $response;
 
         if ($response->successful()) {
-            return $response->json();
+            $result = $response->json();
+            // if ($resultType === 'object') {
+                // return (object) $result;
+            // } else {
+                return $result;
+            // }
         } else {
             $response->throw();
         }
@@ -45,7 +50,7 @@ class OzonApi
         return $this->response;
     }
 
-    public function productList(object $filter = new stdClass, string $lastId = null, int $limit = 1000): array {
+    public function productList(object $filter = new stdClass, int $limit = 1000, string $lastId = null): array {
         return $this->post('/v2/product/list', [
             'filter' => $filter,
             'last_id' => $lastId,
