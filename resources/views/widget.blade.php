@@ -1,7 +1,9 @@
 <style>
 
     .ozon-widget {
-
+        position: relative;
+        top: 0;
+        left: 0;
     }
 
     .widget-seller-rating {
@@ -10,8 +12,12 @@
         left: 0;
         font-size: 14px;
         font-weight: bold;
-        background-color: rgb(0 48 120 / 11%);
+        background-color: rgb(0 48 120 / 15%);
         padding: 0 3px;
+    }
+
+    .widget-seller-rating:hover {
+        background-color: rgb(0 48 120 / 75%);
     }
 
     .widget-seller-rating > span:first-child {
@@ -21,7 +27,7 @@
 
     .widget-products {
         display: flex;
-        justify-content: center;
+/*        justify-content: center;*/
         gap: 1rem;
     }
 
