@@ -9,7 +9,8 @@ class Widget {
 
 	const
 		LIMIT = 5,
-		PRODUCTS = ['403482751', '403636472', '403505713', '403510966', '403617123']; // product ids
+		PRODUCTS = ['403482751', '403636472', '403505713', '403510966', '403617123'], // product ids
+		CACHE_TIME = 500;
 
 	public
 		$api = null,
@@ -20,6 +21,15 @@ class Widget {
 	}
 
 	public function init() {
+
+		$products = cache()->remember('ozon-widget-products', static::CACHE_TIME, function () {
+            return $this->apiProducts();
+        });
+
+		return view('widget', compact('products'));
+	}
+
+	public function apiProducts() {
 		$filter = new stdClass;
 		$filter->product_id = static::PRODUCTS;
 		$filter->visibility = 'VISIBLE';
@@ -36,7 +46,7 @@ class Widget {
         }
         $this->products = $products;
 
-		return view('widget', compact('products'));
+        return $products;
 	}
 
 	public function getProducts():array {
