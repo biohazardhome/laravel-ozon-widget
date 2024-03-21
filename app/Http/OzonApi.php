@@ -29,18 +29,14 @@ class OzonApi
         }
     }
 
-    public function post(string $url, array $query = []/*, string $resultType = 'object'*/): array
+    public function post(string $url, array|object $query = []): array
     {
         $response = Http::ozonApi()->post($url, $query);
         $this->response = $response;
 
         if ($response->successful()) {
             $result = $response->json();
-            // if ($resultType === 'object') {
-                // return (object) $result;
-            // } else {
-                return $result;
-            // }
+            return $result;
         } else {
             $response->throw();
         }
@@ -66,6 +62,8 @@ class OzonApi
         ])['result'];
     }
 
-
+    public function ratingSummary(): array {
+        return $this->post('/v1/rating/summary', new \stdClass)['groups'];
+    }
 
 }

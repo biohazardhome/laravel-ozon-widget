@@ -1,4 +1,22 @@
 <style>
+
+    .ozon-widget {
+
+    }
+
+    .widget-seller-rating {
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .widget-seller-rating > span:first-child {
+        color: orange;
+        font-size: 16px;
+    }
+
     .widget-products {
         display: flex;
         justify-content: center;
@@ -44,6 +62,10 @@
 </style>
 
 <div class="ozon-widget">
+    <div class="widget-seller-rating" title="Рейтинг продовца">
+        <span>&#9733;</span>
+        {{ $rating->current_value }}
+    </div>
     <div class="widget-products">
         @foreach($products as $product)
             <?php

@@ -24,13 +24,17 @@ class Widget {
 	public function init() {
 
 		$products = cache()->remember('ozon-widget-products', static::CACHE_TIME, function () {
-            return $this->apiProducts();
+            return $this->products();
         });
 
-		return view('widget', compact('products'));
+        $rating = cache()->remember('ozon-widget-rating', static::CACHE_TIME, function () {
+        	return $this->rating();
+        });
+
+		return view('widget', compact('products', 'rating'));
 	}
 
-	public function apiProducts() {
+	public function products() {
 		$filter = new stdClass;
 		$filter->product_id = static::PRODUCTS;
 		$filter->visibility = static::VISIBLE;
@@ -48,6 +52,17 @@ class Widget {
         $this->products = $products;
 
         return $products;
+	}
+
+	public function rating() {
+		$groups = $this->api->ratingSummary();
+		foreach($groups as $group) {
+			if ($group['group_name'] === 'Оценка продавца') {
+				break;
+			}
+		}
+
+		return (object) $group['items'][0]/*['current_value']*/;
 	}
 
 	public function getProducts():array {

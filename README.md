@@ -1,5 +1,6 @@
 ## Laravel Ozon Виджет для сайта
-Виджет для вывода списка продуктов у определенного продовца с сайта Ozon
+Виджет для вывода списка продуктов у определенного продовца с сайта Ozon.
+В правом верхнем углу выводится рейтинг продавца.
 
 ```
 Widget::VISIBLE = Какие товары выводить [ALL, VISIBLE, TO_SUPPLY, IN_SALE, OVERPRICED] <a href="https://docs.ozon.ru/api/seller/#operation/ProductAPI_GetProductList">Ozon Api Seller</a>
