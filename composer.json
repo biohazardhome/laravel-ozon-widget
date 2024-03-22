@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "biohazard/laravel-widget-ozon": "^0.0.2",
         "laravel/framework": "^11.0",
         "laravel/tinker": "^2.9"
     },
@@ -22,8 +23,7 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/",
-            "Biohazard\\": "Biohazard/"
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "autoload-dev": {
